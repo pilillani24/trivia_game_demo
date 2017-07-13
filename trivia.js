@@ -14,7 +14,6 @@ var answer;
 var questionNumber;
 var count = 10;
 var counter = setInterval(timer, 1000); //1000 will  run it every 1 second
-
 function timer(){
   count= count - 1;
   if (count <= 0){
@@ -24,38 +23,43 @@ function timer(){
     $("#question").empty();
     $("#answers").text("The correct answer was: " + answer);
     questionNumber++;
-    console.log(questionNumber);
-
-    setTimeout(function() {
-      $("#game-status").empty();
-      $("#answers").empty();
-      playGame(questionNumber); 
-      }, 5000);
-    }
+    nextQuestion();
+  }
   $("#timer").text(count + " secs");
 }
 
-var questions = [{
-  question: "What is 2*5?",
-  choices: [2, 5, 10, 15, 20],
-  correctAnswer: 10
-}, {
-  question: "What is 3*6?",
-  choices: [3, 6, 9, 12, 18],
-  correctAnswer: 18
-}, {
-  question: "What is 8*9?",
-  choices: [72, 99, 108, 134, 156],
-  correctAnswer: 72
-}, {
-  question: "What is 1*7?",
-  choices: [4, 5, 6, 7, 8],
-  correctAnswer: 7
-}, {
-  question: "What is 8*8?",
-  choices: [20, 30, 40, 50, 64],
-  correctAnswer: 64
-}];
+function nextQuestion(){
+  setTimeout(function() {
+  count = 10;
+  counter = setInterval(timer, 1000); //1000 will  run it every 1 second
+  timer();
+    $("#game-status").empty();
+    $("#answers").empty();
+    playGame(questionNumber); 
+  }, 5000);
+}
+
+ var questions = [{
+    question: "What is 2*5?",
+    choices: [2, 5, 10, 15, 20],
+    correctAnswer: 10
+  }, {
+    question: "What is 3*6?",
+    choices: [3, 6, 9, 12, 18],
+    correctAnswer: 18
+  }, {
+    question: "What is 8*9?",
+    choices: [72, 99, 108, 134, 156],
+    correctAnswer: 72
+  }, {
+    question: "What is 1*7?",
+    choices: [4, 5, 6, 7, 8],
+    correctAnswer: 7
+  }, {
+    question: "What is 8*8?",
+    choices: [20, 30, 40, 50, 64],
+    correctAnswer: 64
+  }];
 
 // function playGame(){
 //   for(var i = 0; i < questions.length; i++){
@@ -69,7 +73,6 @@ var questions = [{
 //     })(i);
 //   }
 // }
-
 function playGame(questionNumber){
   $("#question").text(questions[questionNumber].question);
   for(var j = 0; j < questions[questionNumber].choices.length; j++){
