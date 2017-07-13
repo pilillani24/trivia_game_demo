@@ -1,0 +1,29 @@
+<script>
+var startAt = 0;
+var timer;
+
+function timedCount()
+{
+	document.getElementById('timer').value= startAt;
+	startAt = startAt + 1;
+	timer = setTimeout("timedCount()", 1000);
+}
+
+function stopCount()
+{
+	clearTimeout(timer);
+}
+
+function clearTimer()
+{
+	document.getElementById('timer').value=0;
+	startAt=0;
+}
+
+</script>
+<form>
+<input type="button" value="Start Count" onClick="timedCount()">
+<input type="button" value="0" id="txt">
+<input type="button" value="Stop Count" onClick="stopCount()">
+<input type="button" value="Clear Timer" onClick="clearTimer()">
+</form>
